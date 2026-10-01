@@ -1,0 +1,41 @@
+x-dashbite: &dashbite
+  build: .
+  image: dashbite:demo
+  environment:
+    TRAIN_EVERY_N_EVENTS: "50"
+    BATCH_SIZE: "20"
+    POLL_INTERVAL_SECONDS: "2"
+    CORRUPT_BATCH_RATE: "0.25"
+  volumes:
+    - dashbite-data:/app/data
+
+services:
+  simulator:
+    <<: *dashbite
+    command: [ "python", "-m", "pipeline.simulator" ]
+
+  preprocess:
+    <<: *dashbite
+    command: [ "python", "-m", "pipeline.preprocess" ]
+
+  train:
+    <<: *dashbite
+    command: [ "python", "-m", "pipeline.train" ]
+
+  infer:
+    <<: *dashbite
+    command: [ "python", "-m", "pipeline.infer" ]
+
+  dashboard:
+    <<: *dashbite
+    command:
+      - streamlit
+      - run
+      - pipeline/dashboard/app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+    ports:
+      - "127.0.0.1:8501:8501"
+
+volumes:
+  dashbite-data:
