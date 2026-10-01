@@ -1,0 +1,16 @@
+{
+  "accepted_rows": 50,
+  "drop_rate": 0.0,
+  "feature_file": "orders_20261001T075359214904Z_features.csv",
+  "field_failures": {
+    "distance_km": 0,
+    "order_id": 0,
+    "order_value": 0,
+    "prep_minutes": 0,
+    "timestamp": 0,
+    "was_late": 0
+  },
+  "input_rows": 50,
+  "rejected_rows": 0,
+  "source_file": "orders_20261001T075359214904Z.csv"
+}
