@@ -3,7 +3,7 @@
 ## Project Description
 This is 1st major assignment under IDS 706 with the purpose to practice the development workflow with AI-assitance tool. The selected project for this assignment is 'Extend and Containerize DashBite'.
 
-DashBite is a file-based application that demonstrates an end-to-end late-order prediction pipeline. It generates synthetic food orders, validates and transforms them into model features, trains a logistic-regression classifier, and writes late-risk predictions. Model Pulse presents recent order volume, predicted late rates, and input-quality failures in a live dashboard. Each stage runs independently and exchanges artifacts through the `data/` directories.
+This project focuses on developing DashBite, which is a file-based application that demonstrates an end-to-end late-order prediction pipeline with the support on AI-assitance tool. Dashbite generates synthetic food orders, validates and transforms them into model features, trains a logistic-regression classifier, and writes late-risk predictions. Model Pulse presents recent order volume, predicted late rates, and input-quality failures in a live dashboard. Each stage runs independently and exchanges artifacts through the `data/` directories.
 
 ## Project Structure
 
