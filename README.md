@@ -79,14 +79,14 @@ make stop
 Smoke Test was executed with the following results:
 
 **Passed**
-- **Setup:** `make install` installed all requirements successfully.
-- **Tests:** `make test` passed (109 tests).
-- **Image build:** `docker compose build` completed successfully.
-- **Pipeline:** `docker compose up -d` started the simulator, preprocessing, training, and inference stages. Raw, feature, model, prediction, and quality artifacts were all present in the shared data volume.
-- **Model Pulse UI:** The page rendered at `http://localhost:8501` with its KPIs and charts when reachable.
+- **Setup** - `make install` installed all requirements successfully.
+- **Tests** - `make test` passed (109 tests).
+- **Image build** - `docker compose build` completed successfully.
+- **Pipeline** - `docker compose up -d` started the simulator, preprocessing, training, and inference stages. Raw, feature, model, prediction, and quality artifacts were all present in the shared data volume.
+- **Model Pulse UI** - The dashboard rendered successfully when run with make dashboard. In the Docker Compose smoke test, however, the dashboard container exited with status 2 because its configured target, pipeline/dashboard/app.py, did not exist in the image.
 
 **Failed**
-- **Compose dashboard service:** The container exited with status 2 because its configured target, `pipeline/dashboard/app.py`, does not exist in the image.
+- **Compose dashboard service** - The container exited with status 2 because its configured target, `pipeline/dashboard/app.py`, does not exist in the image.
 
 **Conclusion**
 - Setup, tests, image build, and artifact production succeeded, but the full container smoke test did not pass because the dashboard service could not stay running.
