@@ -9,7 +9,8 @@ This project focuses on developing DashBite, which is a file-based application t
 
 ```text
 DashBite/
-├── requirements.txt                   # Python dependencies
+├── requirements.txt                    # Python dependencies
+├── images/                             # Images for README.md
 ├── Makefile                            # Install, test, stage, and full-stack commands
 ├── Dockerfile                          # Container image definition
 ├── compose.yaml                        # Multi-service container configuration
@@ -95,7 +96,7 @@ Smoke Test was executed with the following results:
 <br><br>
 
 ## Running DashBite in Containers
-Once `Dockerfile` and `compose.yaml` have beeen created. the following command can be used to build the Docker image and start the DashBite services:
+Docker Compose setup shares the data between all services through a shared volume. It also sets the pipeline configuration, runs each stage with its project command, and exposes the dashboard on port 8501 for local access. Once `Dockerfile` and `compose.yaml` have beeen created. the following command can be used to build the Docker image and start the DashBite services:
 - `docker compose -p dashbite up --build -d` — This builds the DashBite image, creates the containers, and starts the pipeline services in the background.
 <p>
   <img src="images/docker-build.png">
