@@ -40,18 +40,28 @@ DashBite/
 ```
 
 ## Run the Application
-
-Install dependencies and run the automated test suite:
+The Makefile provides the main classroom-facing commands for running and testing the pipeline.
+- Install dependencies and run the automated test suite:
 
 ```bash
 make install
 make test
 ```
 
-Start the full application as persistent background processes:
+- Run the full application as persistent background processes:
 
 ```bash
 make run
+```
+
+- Individual stages can also be run with:
+
+```bash
+make simulator
+make preprocess
+make train
+make infer
+make dashboard
 ```
 
 The default polling interval is 15 seconds. Stage logs are written to `.logs/` and PID records to `.logs/pids/`. New batches flow through `data/raw/`, `data/features/`, and `data/predictions/`. Open Model Pulse at <http://localhost:8501>.
@@ -63,10 +73,7 @@ make stop
 ```
 
 ## Smoke Test Results
-
-## Smoke Test Results
-
-The project was exercised using the documented setup and Docker Compose workflow.
+Smoke Test was executed with the following results:
 
 **Passed**
 - **Setup:** `make install` installed all requirements successfully.
@@ -84,4 +91,30 @@ The project was exercised using the documented setup and Docker Compose workflow
 
 **Note:** Individual targets (`make simulator`, `make preprocess`, `make train`, `make infer`, `make dashboard`) run their stage in the foreground.
 
+## Docker
+
 ## Evaluation & Reflection
+The selected project for this assignment is 'Extend and Containerize DashBite'.
+
+### 1. AI Assitants
+AI Assitants play 3 key major roles for the project developement. This includes:
+- **Architecture** - This AI supported in defining the project requirements, architecture, implementation plan, risks, and verification approach.
+- **Builder:** - This AI supported the implementation of the plan, writes or updates the code and tests, and makes corrections based on review.
+**Checker/Tester:** - This AI acted as an independent auditor to check the implementation against the plan, tests edge cases and system behavior, and fixes or reports any issues found.
+
+### 2. Accepted AI recomendations
+Key examples of recommendations accepted include:
+- **Unique order IDs** - Accepted the Tester’s recommendation to make order IDs unique across simulator batches while keeping the seeded output reproducible.
+- **Separate quality sidecar** - Accepted the Architect’s recommendation to store data-quality failure counts separately, so the existing feature CSV format would not need to change.
+
+### 3. Adjustments to AI recommendations
+Key examples of adjustments made to recommendations from AI include:
+- **"No defect" verdict on the dashboard** - Rejected the Tester’s conclusion after checking the dashboard and finding that the KPI numbers were not visible. After requesting for visual inspection, the tester later identified the near-white text on white cards and led to a CSS fix.
+- **initial 'was_late' validation** - Requested the Builder to tighten the preprocessing rules so that was_late accepts only true, false, 1, and 0, rather than allowing other values such as yes or no.
+
+### Final Result Inspection
+Examples for independent verification of the final results include:
+- **Inference independence check** - Verified that inference could continue using an existing checkpoint after training stopped, and that a newly published checkpoint was used only for later feature batches.
+- **Visual dashboard check:** - Opened Model Pulse and identified that the KPI values were not visible even though valid orders existed then proceeded to tell AI for issue resolution.
+
+
