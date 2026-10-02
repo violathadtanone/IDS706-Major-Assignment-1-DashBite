@@ -38,6 +38,7 @@ DashBite/
     ├── regression/                     # Contract and behavior regression tests
     └── integration/                    # Pipeline and application integration tests
 ```
+<br><br>
 
 ## Run the Application
 The Makefile provides the main classroom-facing commands for running and testing the pipeline.
@@ -71,6 +72,7 @@ Stop the full stack with:
 ```bash
 make stop
 ```
+<br><br>
 
 ## Smoke Test Results
 Smoke Test was executed with the following results:
@@ -90,8 +92,36 @@ Smoke Test was executed with the following results:
 - Next step: correct the dashboard entrypoint and rerun the Compose smoke test before treating the containerized app as verified.
 
 **Note:** Individual targets (`make simulator`, `make preprocess`, `make train`, `make infer`, `make dashboard`) run their stage in the foreground.
+<br><br>
 
-## Docker
+## Running DashBite in Containers
+Once `Dockerfile` and `compose.yaml` have beeen created. the following command can be used to build the Docker image and start the DashBite services:
+- `docker compose -p dashbite up --build -d` — This builds the DashBite image, creates the containers, and starts the pipeline services in the background.
+<p>
+  <img src="images/docker-build.png">
+</p>
+
+- `docker compose -p dashbite ps` — This checks that the DashBite services were created and shows their current status.
+<p>
+  <img src="images/docker-ps.png">
+</p>
+
+- `docker compose -p dashbite logs -f train infer` — This monitors the training and inference services to verify that models are being published and predictions are being generated.
+<p>
+  <img src="images/docker-infer.png">
+</p>
+
+- `docker compose -p dashbite down` — This stops and removes the DashBite containers after the run is complete.
+<p>
+  <img src="images/docker-down.png">
+</p>
+
+Below is an example of successful image build and running container on Docker.
+<p>
+  <img src="images/docker-image.png" width="400">
+  <img src="images/docker-container.png" width="400">
+</p>
+<br><br>
 
 ## Evaluation & Reflection
 The selected project for this assignment is 'Extend and Containerize DashBite'.
