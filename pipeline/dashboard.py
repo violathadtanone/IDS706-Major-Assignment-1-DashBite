@@ -16,6 +16,15 @@ from pipeline.pulse import (
 
 FEATURE_SUFFIX = "_features.csv"
 PREDICTION_SUFFIX = "_predictions.csv"
+METRIC_VALUE_TEXT_COLOR = "#152c2a"
+METRIC_VALUE_CSS = f"""
+<style>
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] * {{
+    color: {METRIC_VALUE_TEXT_COLOR} !important;
+    -webkit-text-fill-color: {METRIC_VALUE_TEXT_COLOR} !important;
+}}
+</style>
+"""
 
 
 def _read_csv_rows(directory: Path, pattern: str) -> list[dict[str, str]]:
@@ -233,6 +242,7 @@ def main() -> None:
         """,
         unsafe_allow_html=True,
     )
+    st.markdown(METRIC_VALUE_CSS, unsafe_allow_html=True)
     st.title("Model Pulse")
     st.caption("Live pipeline health · file-backed view · refreshes every 5 seconds")
 

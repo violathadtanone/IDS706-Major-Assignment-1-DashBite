@@ -2,9 +2,18 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
+from pipeline.dashboard import METRIC_VALUE_CSS, METRIC_VALUE_TEXT_COLOR
 from pipeline.pulse import late_flag_rate_over_time, ranked_field_failures, volume_over_time
 
 NOW = datetime(2026, 10, 1, 12, 0, tzinfo=timezone.utc)
+
+
+@pytest.mark.regression
+def test_dashboard_metric_values_keep_high_contrast_text_color():
+    assert METRIC_VALUE_TEXT_COLOR == "#152c2a"
+    assert '[data-testid="stMetricValue"]' in METRIC_VALUE_CSS
+    assert f"color: {METRIC_VALUE_TEXT_COLOR} !important" in METRIC_VALUE_CSS
+    assert f"-webkit-text-fill-color: {METRIC_VALUE_TEXT_COLOR} !important" in METRIC_VALUE_CSS
 
 
 def _minute_records(start, count, flagged_count=0, prefix="order"):

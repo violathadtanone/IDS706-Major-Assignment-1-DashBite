@@ -63,6 +63,7 @@ Raw order fields stay intentionally small: `order_id`, `timestamp`, `distance_km
 - Keep Model Pulse read-only and separate from pipeline execution.
 - The Makefile is the public interface and the way we orchestrate every class demo and smoke test. Use targets such as `make simulator`, `make preprocess`, `make train`, `make infer`, `make dashboard`, and `make run`; keep implementation commands behind those targets.
 - Keep the demo deliberately local and understandable: plain Python plus files, with no containers, Kafka, or Spark.
+- This is intentional for a small classroom pipeline: local files make each stage's inputs and outputs directly inspectable, while plain Python keeps attention on process boundaries, artifact contracts, and reproducibility instead of deployment and distributed-system setup. The design favors teaching those fundamentals over infrastructure scale.
 
 ## Manual Smoke Tests
 
@@ -498,6 +499,8 @@ make dashboard
 #### Watch for
 
 Terminal 4 shows Streamlit starting and reading artifacts from `data/`. In the dashboard, students see the volume series move as batches arrive, the `% predicted late` series update by minute, and one horizontal field-failure chart sorted from most to fewest failures. Titles state the current finding, labels are human-readable, and there is no duplicate failures table or business/ops KPI panel.
+
+Check that all three KPI values are visibly dark against their white cards. In the browser inspector, `[data-testid="stMetricValue"]` should have computed text color `rgb(21, 44, 42)`; do not treat pale/white text as a missing value. `Valid samples (60 min)` counts feature rows whose timestamps are in the rolling window: for example, 16 complete recent batches of 50 rows each produce 800, while a batch crossing the window boundary can contribute fewer than 50.
 
 #### Stop
 
