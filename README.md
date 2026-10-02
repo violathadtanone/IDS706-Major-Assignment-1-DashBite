@@ -140,8 +140,9 @@ Key examples of recommendations accepted include:
 
 ### 3. Adjustments to AI recommendations
 Key examples of adjustments made to recommendations from AI include:
+- **Detailed plan.md** - Identified unclear areas in plan.md file and requested Architect to specify the requirements from clearly (e.g. Be explicit on the purpose of each pipeline stage)
 - **"No defect" verdict on the dashboard** - Rejected the Tester’s conclusion after checking the dashboard and finding that the KPI numbers were not visible. After requesting for visual inspection, the tester later identified the near-white text on white cards and led to a CSS fix.
-- **initial 'was_late' validation** - Requested the Builder to tighten the preprocessing rules so that was_late accepts only true, false, 1, and 0, rather than allowing other values such as yes or no.
+- **Initial 'was_late' validation** - Requested the Builder to tighten the preprocessing rules so that was_late accepts only true, false, 1, and 0, rather than allowing other values such as yes or no.
 
 ### Final Result Inspection
 Examples for independent verification of the final results include:
